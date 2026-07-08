@@ -36,13 +36,13 @@ public class Bet {
     @Column(name = "away_goals_prediction", nullable = false)
     private Integer awayGoalsPrediction;
 
-    @Column(name = "penalty_prediction", nullable = false)
+    @Column(name = "penalty_prediction")
     private Boolean penaltyPrediction;
 
-    @Column(name = "yellow_card_prediction", nullable = false)
+    @Column(name = "yellow_card_prediction")
     private Boolean yellowCardPrediction;
 
-    @Column(name = "red_card_prediction", nullable = false)
+    @Column(name = "red_card_prediction")
     private Boolean redCardPrediction;
 
     @Column(name = "points_earned", nullable = false)
