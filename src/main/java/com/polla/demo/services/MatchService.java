@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class MatchService {
@@ -66,13 +67,13 @@ public class MatchService {
             points += 3;
         }
 
-        if (bet.getPenaltyPrediction().equals(actualMatch.getPenaltyAwarded())) {
+        if (Objects.equals(bet.getPenaltyPrediction(), actualMatch.getPenaltyAwarded())) {
             points += 1;
         }
-        if (bet.getYellowCardPrediction().equals(actualMatch.getYellowCard())) {
+        if (Objects.equals(bet.getYellowCardPrediction(), actualMatch.getYellowCard())) {
             points += 1;
         }
-        if (bet.getRedCardPrediction().equals(actualMatch.getRedCard())) {
+        if (Objects.equals(bet.getRedCardPrediction(), actualMatch.getRedCard())) {
             points += 1;
         }
 
