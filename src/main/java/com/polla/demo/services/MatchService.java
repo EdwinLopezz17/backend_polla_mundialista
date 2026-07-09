@@ -64,7 +64,7 @@ public class MatchService {
 
         if (bet.getHomeGoalsPrediction().equals(actualMatch.getHomeGoals())
                 && bet.getAwayGoalsPrediction().equals(actualMatch.getAwayGoals())) {
-            points += 3;
+            points += 1;
         }
 
         if (Objects.equals(bet.getPenaltyPrediction(), actualMatch.getPenaltyAwarded())) {
