@@ -1,3 +1,4 @@
+
 package com.polla.demo.services;
 
 import com.polla.demo.models.Bet;
@@ -49,6 +50,7 @@ public class MatchService {
     private int calculatePoints(Bet bet, Match actualMatch) {
         int points = 0;
 
+        // 1. Puntos por resultado a tiempo completo (90 minutos)
         if (bet.getFullTimePrediction().equalsIgnoreCase(actualMatch.getFullTimeResult())) {
             if (actualMatch.getFullTimeResult().equalsIgnoreCase("X")) {
                 points += 2;
@@ -57,16 +59,21 @@ public class MatchService {
             }
         }
 
+        // CORRECCIÓN: Solo suma el punto si el partido real fue empate ("X"), 
+        // el usuario TAMBIÉN pronosticó empate ("X"), y acertó quién pasa.
         if (actualMatch.getFullTimeResult().equalsIgnoreCase("X") &&
+                bet.getFullTimePrediction().equalsIgnoreCase("X") &&
                 bet.getQualifiedTeamPrediction().equalsIgnoreCase(actualMatch.getQualifiedTeam())) {
             points += 1;
         }
 
+        // 3. Puntos por marcador exacto
         if (bet.getHomeGoalsPrediction().equals(actualMatch.getHomeGoals())
                 && bet.getAwayGoalsPrediction().equals(actualMatch.getAwayGoals())) {
             points += 1;
         }
 
+        // 4. Puntos por variables adicionales (Penales, Tarjetas)
         if (Objects.equals(bet.getPenaltyPrediction(), actualMatch.getPenaltyAwarded())) {
             points += 1;
         }
